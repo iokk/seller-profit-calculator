@@ -51,8 +51,7 @@ const store = useCalculatorStore()
       <div class="notice">建议售价已包含平台佣金、支付手续费、广告费和目标利润率。</div>
     </section>
 
-    <section class="card formula-card">
-      <p class="eyebrow">Formula</p>
+    <section class="card formula-card mini-invoice">
       <h2>计算公式</h2>
 
       <div class="formula-list">

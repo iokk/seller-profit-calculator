@@ -4,15 +4,27 @@ import type { CalculatorInput, Preset } from '../types/calculator'
 import { calculateProfit } from '../utils/calculator'
 
 const STORAGE_KEY = 'seller-profit-calculator-input'
+const MAX_AMOUNT = 99999999
+
+type AmountKey =
+  | 'productCost'
+  | 'firstMileCost'
+  | 'lastMileCost'
+  | 'storageCost'
+  | 'taxCost'
+  | 'returnLossCost'
+  | 'otherCost'
+
+type RateKey = 'platformFeeRate' | 'paymentFeeRate' | 'adFeeRate' | 'targetProfitRate'
 
 const defaultInput: CalculatorInput = {
   productCost: 50,
-  firstMileCost: 8,
-  lastMileCost: 15,
-  platformFeeRate: 0.08,
+  firstMileCost: 10,
+  lastMileCost: 12,
+  platformFeeRate: 0.05,
   paymentFeeRate: 0.035,
   adFeeRate: 0.1,
-  storageCost: 2,
+  storageCost: 3,
   taxCost: 0,
   returnLossCost: 3,
   otherCost: 0,
@@ -80,9 +92,13 @@ export const useCalculatorStore = defineStore('calculator', () => {
     input.value = { ...defaultInput }
   }
 
-  function updateRate(key: 'platformFeeRate' | 'paymentFeeRate' | 'adFeeRate' | 'targetProfitRate', value: string) {
-    const rate = Number(value) / 100
-    input.value[key] = Number.isFinite(rate) ? rate : 0
+  function updateAmount(key: AmountKey, value: string) {
+    input.value[key] = sanitizeNumber(value, MAX_AMOUNT)
+  }
+
+  function updateRate(key: RateKey, value: string) {
+    const maxPercent = key === 'targetProfitRate' ? 80 : 90
+    input.value[key] = sanitizeNumber(value, maxPercent) / 100
   }
 
   watch(
@@ -99,6 +115,7 @@ export const useCalculatorStore = defineStore('calculator', () => {
     result,
     applyPreset,
     reset,
+    updateAmount,
     updateRate
   }
 })
@@ -110,4 +127,21 @@ function loadInput(): CalculatorInput {
   } catch {
     return { ...defaultInput }
   }
+}
+
+function sanitizeNumber(value: string, max: number) {
+  const cleaned = value
+    .replace(/[^\d.]/g, '')
+    .replace(/(\..*)\./g, '$1')
+
+  const [integerPart, decimalPart = ''] = cleaned.split('.')
+  const normalized = decimalPart
+    ? `${integerPart || '0'}.${decimalPart.slice(0, 2)}`
+    : integerPart
+
+  const number = Number(normalized)
+
+  if (!Number.isFinite(number)) return 0
+
+  return Math.min(Math.max(number, 0), max)
 }

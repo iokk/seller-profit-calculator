@@ -6,6 +6,10 @@ const store = useCalculatorStore()
 function fromRate(value: number) {
   return Number((value * 100).toFixed(2))
 }
+
+function fromAmount(value: number) {
+  return Number.isFinite(value) ? String(value) : '0'
+}
 </script>
 
 <template>
@@ -20,102 +24,146 @@ function fromRate(value: number) {
 
     <div class="form-grid">
       <label class="field">
-        产品成本
-        <input v-model.number="store.input.productCost" type="number" min="0" inputmode="decimal" />
+        <span class="field-title">产品成本</span>
+        <input
+          :value="fromAmount(store.input.productCost)"
+          type="text"
+          inputmode="decimal"
+          maxlength="11"
+          @input="store.updateAmount('productCost', ($event.target as HTMLInputElement).value)"
+        />
+        <small>单件商品采购成本，最高 99,999,999</small>
       </label>
 
       <label class="field">
-        头程费用
-        <input v-model.number="store.input.firstMileCost" type="number" min="0" inputmode="decimal" />
+        <span class="field-title">头程费用</span>
+        <input
+          :value="fromAmount(store.input.firstMileCost)"
+          type="text"
+          inputmode="decimal"
+          maxlength="11"
+          @input="store.updateAmount('firstMileCost', ($event.target as HTMLInputElement).value)"
+        />
         <small>工厂到海外仓、平台仓或目的国的成本</small>
       </label>
 
       <label class="field">
-        尾程费用
-        <input v-model.number="store.input.lastMileCost" type="number" min="0" inputmode="decimal" />
+        <span class="field-title">尾程费用</span>
+        <input
+          :value="fromAmount(store.input.lastMileCost)"
+          type="text"
+          inputmode="decimal"
+          maxlength="11"
+          @input="store.updateAmount('lastMileCost', ($event.target as HTMLInputElement).value)"
+        />
         <small>仓库到买家的配送费用</small>
       </label>
 
       <label class="field rate-field">
-        <span>平台佣金 %</span>
+        <span class="field-title">平台佣金 %</span>
         <input
           :value="fromRate(store.input.platformFeeRate)"
-          type="number"
-          min="0"
-          max="90"
+          type="text"
           inputmode="decimal"
+          maxlength="6"
           @input="store.updateRate('platformFeeRate', ($event.target as HTMLInputElement).value)"
         />
         <small>常见参考：独立站 2%-5%，TikTok Shop 2%-8%，Amazon 8%-15%</small>
       </label>
 
       <label class="field rate-field">
-        <span>支付手续费 %</span>
+        <span class="field-title">支付手续费 %</span>
         <input
           :value="fromRate(store.input.paymentFeeRate)"
-          type="number"
-          min="0"
-          max="90"
+          type="text"
           inputmode="decimal"
+          maxlength="6"
           @input="store.updateRate('paymentFeeRate', ($event.target as HTMLInputElement).value)"
         />
         <small>常见参考：Stripe/PayPal/信用卡约 2.9%-4.5%</small>
       </label>
 
       <label class="field rate-field">
-        <span>广告费率 %</span>
+        <span class="field-title">广告费率 %</span>
         <input
           :value="fromRate(store.input.adFeeRate)"
-          type="number"
-          min="0"
-          max="90"
+          type="text"
           inputmode="decimal"
+          maxlength="6"
           @input="store.updateRate('adFeeRate', ($event.target as HTMLInputElement).value)"
         />
         <small>常见参考：成熟品 8%-15%，新品测试 15%-30%</small>
       </label>
 
       <label class="field rate-field">
-        <span>目标利润率 %</span>
+        <span class="field-title">目标利润率 %</span>
         <input
           :value="fromRate(store.input.targetProfitRate)"
-          type="number"
-          min="0"
-          max="80"
+          type="text"
           inputmode="decimal"
+          maxlength="6"
           @input="store.updateRate('targetProfitRate', ($event.target as HTMLInputElement).value)"
         />
         <small>常见参考：低价走量 10%-20%，常规利润 20%-35%</small>
       </label>
 
       <label class="field">
-        仓储费
-        <input v-model.number="store.input.storageCost" type="number" min="0" inputmode="decimal" />
+        <span class="field-title">仓储费</span>
+        <input
+          :value="fromAmount(store.input.storageCost)"
+          type="text"
+          inputmode="decimal"
+          maxlength="11"
+          @input="store.updateAmount('storageCost', ($event.target as HTMLInputElement).value)"
+        />
+        <small>单件仓储或履约分摊成本</small>
       </label>
 
       <label class="field">
-        税费
-        <input v-model.number="store.input.taxCost" type="number" min="0" inputmode="decimal" />
+        <span class="field-title">税费</span>
+        <input
+          :value="fromAmount(store.input.taxCost)"
+          type="text"
+          inputmode="decimal"
+          maxlength="11"
+          @input="store.updateAmount('taxCost', ($event.target as HTMLInputElement).value)"
+        />
+        <small>关税、VAT 或其他税费分摊</small>
       </label>
 
       <label class="field">
-        退货损耗
-        <input v-model.number="store.input.returnLossCost" type="number" min="0" inputmode="decimal" />
+        <span class="field-title">退货损耗</span>
+        <input
+          :value="fromAmount(store.input.returnLossCost)"
+          type="text"
+          inputmode="decimal"
+          maxlength="11"
+          @input="store.updateAmount('returnLossCost', ($event.target as HTMLInputElement).value)"
+        />
+        <small>退货、破损或售后损耗分摊</small>
       </label>
 
       <label class="field">
-        其他成本
-        <input v-model.number="store.input.otherCost" type="number" min="0" inputmode="decimal" />
+        <span class="field-title">其他成本</span>
+        <input
+          :value="fromAmount(store.input.otherCost)"
+          type="text"
+          inputmode="decimal"
+          maxlength="11"
+          @input="store.updateAmount('otherCost', ($event.target as HTMLInputElement).value)"
+        />
+        <small>包装、人工、赠品等其他分摊成本</small>
       </label>
 
       <label class="field">
-        币种
+        <span class="field-title">币种</span>
         <select v-model="store.input.currency">
           <option value="CNY">CNY 人民币</option>
           <option value="USD">USD 美元</option>
           <option value="EUR">EUR 欧元</option>
           <option value="GBP">GBP 英镑</option>
         </select>
+        <small>当前版本按单一币种本地计算</small>
       </label>
     </div>
 
