@@ -1,0 +1,9 @@
+services:
+  seller-profit-calculator:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: seller-profit-calculator
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:8088:80"

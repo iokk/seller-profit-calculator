@@ -1,0 +1,1 @@
+{"root":["./src/main.ts","./src/composables/usescreenshot.ts","./src/stores/calculator.ts","./src/types/calculator.ts","./src/utils/calculator.ts","./src/utils/format.ts","./src/app.vue","./src/components/buyersharecard.vue","./src/components/calculatorpanel.vue","./src/components/presetbar.vue","./src/components/resultpanel.vue"],"version":"5.9.3"}
