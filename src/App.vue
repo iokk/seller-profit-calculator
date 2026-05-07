@@ -17,7 +17,7 @@ import ResultPanel from './components/ResultPanel.vue'
 
     <PresetBar />
 
-    <section class="grid">
+    <section class="workspace-grid">
       <CalculatorPanel />
       <ResultPanel />
     </section>

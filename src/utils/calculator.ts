@@ -19,14 +19,22 @@ export function calculateProfit(input: CalculatorInput): CalculationResult {
   const recommendedPrice = fixedCost > 0 ? fixedCost / (1 - pricingRate) : 0
   const breakEvenPrice = fixedCost > 0 ? fixedCost / (1 - variableFeeRate) : 0
   const totalVariableFee = recommendedPrice * variableFeeRate
+  const platformFee = recommendedPrice * clean(input.platformFeeRate)
+  const paymentFee = recommendedPrice * clean(input.paymentFeeRate)
+  const adFee = recommendedPrice * clean(input.adFeeRate)
   const profit = recommendedPrice - fixedCost - totalVariableFee
   const profitRate = recommendedPrice > 0 ? profit / recommendedPrice : 0
 
   return {
     fixedCost,
     variableFeeRate,
+    pricingRate,
     breakEvenPrice,
     recommendedPrice,
+    platformFee,
+    paymentFee,
+    adFee,
+    totalVariableFee,
     profit,
     profitRate
   }

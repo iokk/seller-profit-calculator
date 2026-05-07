@@ -18,8 +18,13 @@ export interface CalculatorInput {
 export interface CalculationResult {
   fixedCost: number
   variableFeeRate: number
+  pricingRate: number
   breakEvenPrice: number
   recommendedPrice: number
+  platformFee: number
+  paymentFee: number
+  adFee: number
+  totalVariableFee: number
   profit: number
   profitRate: number
 }
