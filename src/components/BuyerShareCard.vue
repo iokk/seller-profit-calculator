@@ -33,7 +33,7 @@ async function copyImage() {
     <div class="card-header">
       <div>
         <p class="eyebrow">Buyer Card</p>
-        <h2>买家说明卡片</h2>
+        <h2>客户核对卡片</h2>
       </div>
       <div class="button-group">
         <button @click="downloadImage">一键截图</button>
@@ -44,12 +44,12 @@ async function copyImage() {
     <p v-if="status" class="status">{{ status }}</p>
 
     <div ref="cardRef" class="buyer-card">
-      <p class="buyer-badge">Price Explanation</p>
+      <p class="buyer-badge">Price Check</p>
 
       <div class="share-headline">
         <div>
-          <h3>价格与利润测算清单</h3>
-          <p>含产品成本、头程、尾程、平台费、支付费、广告费和目标利润。</p>
+          <h3>售价核对清单</h3>
+          <p>含成本、物流、平台费、支付费、广告费和目标利润。</p>
         </div>
         <div class="share-price">
           <span>建议售价</span>
@@ -58,19 +58,19 @@ async function copyImage() {
       </div>
 
       <div class="share-metrics">
-        <div>
+        <div class="cost">
           <span>固定成本</span>
           <strong>{{ formatMoney(store.result.fixedCost, store.input.currency) }}</strong>
         </div>
-        <div>
+        <div class="price">
           <span>保本售价</span>
           <strong>{{ formatMoney(store.result.breakEvenPrice, store.input.currency) }}</strong>
         </div>
-        <div>
+        <div class="profit-card">
           <span>单件利润</span>
           <strong>{{ formatMoney(store.result.profit, store.input.currency) }}</strong>
         </div>
-        <div>
+        <div class="profit-card">
           <span>利润率</span>
           <strong>{{ formatPercent(store.result.profitRate) }}</strong>
         </div>

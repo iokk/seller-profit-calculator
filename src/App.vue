@@ -8,18 +8,20 @@ import ResultPanel from './components/ResultPanel.vue'
 <template>
   <main class="app">
     <section class="hero">
-      <p class="badge">开源 · 本地计算 · 无需登录</p>
-      <h1>跨境卖家利润计算器</h1>
+      <div>
+        <p class="badge">本地计算 · 无需登录</p>
+        <h1>跨境卖家利润计算器</h1>
+      </div>
       <p class="subtitle">
-        输入产品成本、头程、尾程和费率，一眼看清建议售价、保本价和利润空间。
+        给客户或团队快速核对售价、成本、费用和利润，金额优先，细节轻量展示。
       </p>
     </section>
 
     <PresetBar />
 
     <section class="workspace-grid">
-      <CalculatorPanel />
       <ResultPanel />
+      <CalculatorPanel />
     </section>
 
     <BuyerShareCard />

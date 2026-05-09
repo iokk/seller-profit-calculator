@@ -17,7 +17,7 @@ function fromAmount(value: number) {
     <div class="card-header">
       <div>
         <p class="eyebrow">Seller Input</p>
-        <h2>卖家成本输入</h2>
+        <h2>参数录入</h2>
       </div>
       <button class="text-button" @click="store.reset">重置</button>
     </div>
@@ -168,9 +168,8 @@ function fromAmount(value: number) {
     </div>
 
     <div class="rate-reference">
-      <strong>费率填写提示</strong>
-      <span>平台佣金、支付手续费、广告费率都按售价百分比计算。</span>
-      <span>例如售价 ¥100、平台佣金 8%，平台费就是 ¥100 × 8% = ¥8。</span>
+      <strong>费率按售价百分比计算</strong>
+      <span>例如售价 ¥100、平台佣金 8%，平台费就是 ¥8。</span>
     </div>
   </section>
 </template>
