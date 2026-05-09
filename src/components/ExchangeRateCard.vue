@@ -68,7 +68,7 @@ async function fetchRate() {
 </script>
 
 <template>
-  <section class="card exchange-card">
+  <section class="exchange-card">
     <div class="exchange-header">
       <div>
         <p class="eyebrow">Exchange Rate</p>

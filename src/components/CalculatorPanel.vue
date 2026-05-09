@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import ExchangeRateCard from './ExchangeRateCard.vue'
 import { useCalculatorStore } from '../stores/calculator'
 
 const store = useCalculatorStore()
@@ -13,7 +14,7 @@ function fromAmount(value: number) {
 </script>
 
 <template>
-  <section class="card">
+  <section class="card input-card">
     <div class="card-header">
       <div>
         <p class="eyebrow">Seller Input</p>
@@ -172,5 +173,7 @@ function fromAmount(value: number) {
       <strong>费率按售价百分比计算</strong>
       <span>例如售价 ¥100、平台佣金 8%，平台费就是 ¥8。</span>
     </div>
+
+    <ExchangeRateCard />
   </section>
 </template>
