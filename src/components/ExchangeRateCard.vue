@@ -12,10 +12,10 @@ const rateDate = ref('')
 const isLoading = ref(false)
 
 const currencyOptions: { value: Currency; label: string }[] = [
-  { value: 'CNY', label: 'CNY 人民币' },
-  { value: 'USD', label: 'USD 美元' },
-  { value: 'EUR', label: 'EUR 欧元' },
-  { value: 'GBP', label: 'GBP 英镑' }
+  { value: 'CNY', label: 'CNY' },
+  { value: 'USD', label: 'USD' },
+  { value: 'EUR', label: 'EUR' },
+  { value: 'GBP', label: 'GBP' }
 ]
 
 const quoteCurrency = computed(() => store.input.currency)

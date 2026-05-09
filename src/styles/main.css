@@ -480,16 +480,16 @@ select:focus {
 
 .exchange-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(190px, 0.72fr);
-  gap: 10px;
+  grid-template-columns: minmax(0, 0.86fr) minmax(170px, 0.7fr);
+  gap: 8px;
 }
 
 .exchange-row + .exchange-row {
-  margin-top: 10px;
+  margin-top: 8px;
 }
 
 .exchange-row.compact {
-  grid-template-columns: minmax(0, 1fr) minmax(190px, 0.72fr);
+  grid-template-columns: minmax(0, 0.86fr) minmax(170px, 0.7fr);
 }
 
 .exchange-pair,
@@ -497,15 +497,15 @@ select:focus {
 .manual-rate,
 .converted-preview {
   display: grid;
-  gap: 5px;
+  gap: 4px;
   border: 1px solid var(--soft-line);
   border-radius: 8px;
-  padding: 10px;
+  padding: 8px;
   background: #ffffff;
 }
 
 .exchange-pair {
-  grid-template-columns: auto minmax(150px, 1fr) auto auto;
+  grid-template-columns: auto minmax(82px, 104px) auto auto;
   align-items: center;
 }
 
@@ -514,7 +514,7 @@ select:focus {
 .manual-rate span,
 .converted-preview span {
   color: var(--muted);
-  font-size: 11px;
+  font-size: 10px;
   font-weight: 720;
 }
 
@@ -524,12 +524,15 @@ select:focus {
 
 .exchange-pair .quote-code {
   color: var(--ink);
-  font-size: 13px;
+  font-size: 11px;
+  font-weight: 760;
 }
 
 .exchange-pair select,
 .manual-rate input {
-  height: 32px;
+  height: 28px;
+  padding: 5px 7px;
+  font-size: 12px;
 }
 
 .manual-rate small {
@@ -542,7 +545,8 @@ select:focus {
 .exchange-rate strong,
 .converted-preview strong {
   color: var(--ink);
-  font-size: 15px;
+  font-size: 12px;
+  line-height: 1.25;
 }
 
 .exchange-status {
