@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import BuyerShareCard from './components/BuyerShareCard.vue'
 import CalculatorPanel from './components/CalculatorPanel.vue'
+import ExchangeRateCard from './components/ExchangeRateCard.vue'
 import PresetBar from './components/PresetBar.vue'
 import ResultPanel from './components/ResultPanel.vue'
 </script>
@@ -21,7 +22,10 @@ import ResultPanel from './components/ResultPanel.vue'
 
     <section class="workspace-grid">
       <ResultPanel />
-      <CalculatorPanel />
+      <div class="input-stack">
+        <CalculatorPanel />
+        <ExchangeRateCard />
+      </div>
     </section>
 
     <BuyerShareCard />

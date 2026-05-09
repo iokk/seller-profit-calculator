@@ -19,7 +19,18 @@ function fromAmount(value: number) {
         <p class="eyebrow">Seller Input</p>
         <h2>参数录入</h2>
       </div>
-      <button class="text-button" @click="store.reset">重置</button>
+      <div class="input-actions">
+        <label class="currency-control">
+          <span>先选币种</span>
+          <select v-model="store.input.currency">
+            <option value="CNY">CNY 人民币</option>
+            <option value="USD">USD 美元</option>
+            <option value="EUR">EUR 欧元</option>
+            <option value="GBP">GBP 英镑</option>
+          </select>
+        </label>
+        <button class="text-button" @click="store.reset">重置</button>
+      </div>
     </div>
 
     <div class="form-grid">
@@ -155,16 +166,6 @@ function fromAmount(value: number) {
         <small>包装、人工、赠品等其他分摊成本</small>
       </label>
 
-      <label class="field">
-        <span class="field-title">币种</span>
-        <select v-model="store.input.currency">
-          <option value="CNY">CNY 人民币</option>
-          <option value="USD">USD 美元</option>
-          <option value="EUR">EUR 欧元</option>
-          <option value="GBP">GBP 英镑</option>
-        </select>
-        <small>当前版本按单一币种本地计算</small>
-      </label>
     </div>
 
     <div class="rate-reference">

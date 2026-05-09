@@ -29,7 +29,7 @@ async function copyImage() {
 </script>
 
 <template>
-  <section class="card">
+  <section class="card buyer-section">
     <div class="card-header">
       <div>
         <p class="eyebrow">Buyer Card</p>

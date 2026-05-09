@@ -113,8 +113,9 @@ h1 {
 .workspace-grid {
   display: grid;
   grid-template-columns: minmax(340px, 0.74fr) minmax(0, 1fr);
-  gap: 14px;
+  gap: 18px;
   align-items: start;
+  margin-bottom: 30px;
 }
 
 .card {
@@ -127,7 +128,8 @@ h1 {
 }
 
 .card-header,
-.result-header {
+.result-header,
+.exchange-header {
   display: flex;
   justify-content: space-between;
   gap: 12px;
@@ -187,11 +189,12 @@ h1 {
   position: sticky;
   top: 14px;
   display: grid;
-  gap: 14px;
+  gap: 22px;
 }
 
 .result-card,
-.formula-card {
+.formula-card,
+.exchange-card {
   margin-bottom: 0;
 }
 
@@ -350,6 +353,43 @@ h1 {
   line-height: 1.5;
 }
 
+.input-stack {
+  display: grid;
+  gap: 18px;
+}
+
+.input-actions {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.input-actions .text-button {
+  min-width: 34px;
+  white-space: nowrap;
+}
+
+.currency-control {
+  display: grid;
+  grid-template-columns: auto minmax(150px, 1fr);
+  gap: 8px;
+  align-items: center;
+}
+
+.currency-control span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 760;
+}
+
+.currency-control select {
+  height: 34px;
+  border-color: #b8d0fa;
+  color: #113b7f;
+  background: var(--price-soft);
+  font-weight: 720;
+}
+
 .form-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -419,6 +459,89 @@ select:focus {
   color: var(--ink);
 }
 
+.exchange-card {
+  border-color: #cbdcf5;
+  background: #fcfdff;
+}
+
+.exchange-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(190px, 0.72fr);
+  gap: 10px;
+}
+
+.exchange-row + .exchange-row {
+  margin-top: 10px;
+}
+
+.exchange-row.compact {
+  grid-template-columns: minmax(0, 1fr) minmax(190px, 0.72fr);
+}
+
+.exchange-pair,
+.exchange-rate,
+.manual-rate,
+.converted-preview {
+  display: grid;
+  gap: 5px;
+  border: 1px solid var(--soft-line);
+  border-radius: 8px;
+  padding: 10px;
+  background: #ffffff;
+}
+
+.exchange-pair {
+  grid-template-columns: auto auto minmax(140px, 1fr);
+  align-items: center;
+}
+
+.exchange-pair span,
+.exchange-rate span,
+.manual-rate span,
+.converted-preview span {
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 720;
+}
+
+.exchange-pair strong {
+  color: var(--price);
+}
+
+.exchange-pair select,
+.manual-rate input {
+  height: 32px;
+}
+
+.exchange-rate strong,
+.converted-preview strong {
+  color: var(--ink);
+  font-size: 15px;
+}
+
+.exchange-status {
+  margin: 10px 0 0;
+  color: var(--fee);
+  font-size: 11px;
+}
+
+.exchange-note {
+  display: grid;
+  gap: 4px;
+  margin-top: 12px;
+  border: 1px solid #ead9ac;
+  border-radius: 8px;
+  padding: 9px 10px;
+  color: #7a5114;
+  background: #fffaf0;
+  font-size: 11px;
+  line-height: 1.55;
+}
+
+.exchange-note strong {
+  font-size: 12px;
+}
+
 .button-group {
   display: flex;
   gap: 8px;
@@ -439,6 +562,10 @@ select:focus {
   border-radius: 8px;
   padding: 18px;
   background: #ffffff;
+}
+
+.buyer-section {
+  margin-top: 0;
 }
 
 .buyer-badge {
@@ -563,6 +690,10 @@ select:focus {
     grid-template-columns: 1fr;
   }
 
+  .input-stack {
+    order: -1;
+  }
+
   .sidebar-stack {
     position: static;
   }
@@ -597,10 +728,26 @@ select:focus {
   }
 
   .card-header,
+  .exchange-header,
   .buyer-footer,
   .share-headline {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .input-actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .currency-control {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .exchange-row,
+  .exchange-row.compact {
+    grid-template-columns: 1fr;
   }
 
   .share-price {
