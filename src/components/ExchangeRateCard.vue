@@ -48,6 +48,13 @@ watch(
   { immediate: true }
 )
 
+watch(
+  () => store.resetToken,
+  () => {
+    customRate.value = ''
+  }
+)
+
 async function fetchRate() {
   if (referenceCurrency.value === quoteCurrency.value) return
 

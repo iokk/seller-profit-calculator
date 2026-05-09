@@ -3,7 +3,7 @@ import { computed, ref, watch } from 'vue'
 import type { CalculatorInput, Preset } from '../types/calculator'
 import { calculateProfit } from '../utils/calculator'
 
-const STORAGE_KEY = 'seller-profit-calculator-input'
+const STORAGE_KEY = 'seller-profit-calculator-input-v2'
 const MAX_AMOUNT = 99999999
 
 type AmountKey =
@@ -18,17 +18,17 @@ type AmountKey =
 type RateKey = 'platformFeeRate' | 'paymentFeeRate' | 'adFeeRate' | 'targetProfitRate'
 
 const defaultInput: CalculatorInput = {
-  productCost: 50,
-  firstMileCost: 10,
-  lastMileCost: 12,
-  platformFeeRate: 0.05,
-  paymentFeeRate: 0.035,
-  adFeeRate: 0.1,
-  storageCost: 3,
+  productCost: 0,
+  firstMileCost: 0,
+  lastMileCost: 0,
+  platformFeeRate: 0,
+  paymentFeeRate: 0,
+  adFeeRate: 0,
+  storageCost: 0,
   taxCost: 0,
-  returnLossCost: 3,
+  returnLossCost: 0,
   otherCost: 0,
-  targetProfitRate: 0.2,
+  targetProfitRate: 0,
   currency: 'CNY'
 }
 
@@ -79,6 +79,7 @@ const defaultPresets: Preset[] = [
 export const useCalculatorStore = defineStore('calculator', () => {
   const input = ref<CalculatorInput>(loadInput())
   const presets = ref<Preset[]>(defaultPresets)
+  const resetToken = ref(0)
   const result = computed(() => calculateProfit(input.value))
 
   function applyPreset(preset: Preset) {
@@ -90,6 +91,7 @@ export const useCalculatorStore = defineStore('calculator', () => {
 
   function reset() {
     input.value = { ...defaultInput }
+    resetToken.value += 1
   }
 
   function updateAmount(key: AmountKey, value: string) {
@@ -112,6 +114,7 @@ export const useCalculatorStore = defineStore('calculator', () => {
   return {
     input,
     presets,
+    resetToken,
     result,
     applyPreset,
     reset,
