@@ -18,6 +18,14 @@
   --fee-soft: #fff0f1;
   --profit: #137a4b;
   --profit-soft: #e8f7ef;
+  --target: #6d4aff;
+  --target-soft: #f4f0ff;
+  --breakeven: #586474;
+  --breakeven-soft: #f4f6f8;
+  --payment: #7c4edc;
+  --ad: #b9502f;
+  --promo: #0f7777;
+  --other: #626c7a;
   --neutral-soft: #f4f6f8;
 }
 
@@ -241,7 +249,7 @@ h1 {
 .result-main {
   display: grid;
   gap: 4px;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
   border: 1px solid #b8d0fa;
   border-radius: 8px;
   padding: 16px;
@@ -261,19 +269,63 @@ h1 {
   line-height: 1.05;
 }
 
+.result-section-title {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  align-items: center;
+  margin: 2px 0 8px;
+}
+
+.result-section-title span {
+  color: #2c3441;
+  font-size: 12px;
+  font-weight: 780;
+}
+
+.result-section-title small {
+  color: var(--muted);
+  font-size: 10px;
+  font-weight: 650;
+}
+
+.compact-title {
+  margin-top: 12px;
+}
+
 .dual-result {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
   padding: 10px;
 }
 
-.dual-result div {
+.dual-result .answer-card {
+  position: relative;
   display: grid;
   gap: 4px;
   min-width: 0;
-  border-radius: 7px;
-  padding: 10px;
+  border: 1px solid var(--soft-line);
+  border-radius: 8px;
+  padding: 10px 10px 10px 42px;
   background: rgba(255, 255, 255, 0.72);
+}
+
+.answer-profit {
+  border-color: #bde4cc;
+  color: var(--profit);
+  background: linear-gradient(180deg, #eefaf3, #ffffff);
+}
+
+.answer-target {
+  border-color: #cec4ff;
+  color: var(--target);
+  background: linear-gradient(180deg, #f6f2ff, #ffffff);
+}
+
+.dual-result .metric-icon {
+  position: absolute;
+  top: 11px;
+  left: 10px;
 }
 
 .dual-result strong {
@@ -297,11 +349,43 @@ h1 {
 .share-metrics div {
   display: grid;
   gap: 4px;
-  min-height: 62px;
+  min-height: 76px;
   border: 1px solid var(--soft-line);
   border-radius: 8px;
   padding: 10px;
   background: var(--neutral-soft);
+}
+
+.metric-card {
+  grid-template-rows: auto 1fr;
+}
+
+.metric-label {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  min-width: 0;
+}
+
+.metric-icon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  border-radius: 7px;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.74);
+}
+
+.metric-icon svg {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2;
 }
 
 .metric-card span,
@@ -309,6 +393,19 @@ h1 {
 .share-table span {
   color: var(--muted);
   font-size: 12px;
+}
+
+.metric-card .metric-icon,
+.dual-result .metric-icon {
+  color: inherit;
+}
+
+.metric-card .metric-label > span:last-child {
+  min-width: 0;
+  color: #536071;
+  font-size: 12px;
+  font-weight: 720;
+  overflow-wrap: anywhere;
 }
 
 .metric-card strong,
@@ -333,9 +430,66 @@ h1 {
   background: var(--fee-soft);
 }
 
+.price-card {
+  border-color: #c6dafb;
+  background: var(--price-soft);
+}
+
+.price-card .metric-icon {
+  color: var(--price);
+  background: #dceaff;
+}
+
+.cost-card {
+  border-color: #f1d8a6;
+  background: var(--cost-soft);
+}
+
+.cost-card .metric-icon {
+  color: var(--cost);
+  background: #f8e7c6;
+}
+
+.fee-card {
+  border-color: #f1c5c8;
+  background: var(--fee-soft);
+}
+
+.fee-card .metric-icon {
+  color: var(--fee);
+  background: #f8dfe1;
+}
+
 .profit-card {
   border-color: #bde4cc;
   background: var(--profit-soft);
+}
+
+.profit-card .metric-icon {
+  color: var(--profit);
+  background: #d8f0e2;
+}
+
+.breakeven-card {
+  border-color: #cfd8e3;
+  background: var(--breakeven-soft);
+}
+
+.breakeven-card .metric-icon {
+  color: var(--breakeven);
+  background: #e5eaf0;
+}
+
+.target-card,
+.margin-card {
+  border-color: #cec4ff;
+  background: var(--target-soft);
+}
+
+.target-card .metric-icon,
+.margin-card .metric-icon {
+  color: var(--target);
+  background: #e7e0ff;
 }
 
 .profit,
@@ -408,15 +562,31 @@ h1 {
   min-width: 0;
 }
 
-.cost-share-bar .cost {
+.cost-share-bar .share-cost {
   background: #d9902f;
 }
 
-.cost-share-bar .fee {
+.cost-share-bar .share-platform {
   background: #d95c66;
 }
 
-.cost-share-bar .profit-card {
+.cost-share-bar .share-payment {
+  background: var(--payment);
+}
+
+.cost-share-bar .share-ad {
+  background: var(--ad);
+}
+
+.cost-share-bar .share-promo {
+  background: var(--promo);
+}
+
+.cost-share-bar .share-other {
+  background: var(--other);
+}
+
+.cost-share-bar .share-profit {
   background: #28a263;
 }
 
@@ -437,6 +607,34 @@ h1 {
 
 .cost-share-list span {
   font-weight: 720;
+}
+
+.cost-share-list .share-cost {
+  color: var(--cost);
+}
+
+.cost-share-list .share-platform {
+  color: var(--fee);
+}
+
+.cost-share-list .share-payment {
+  color: var(--payment);
+}
+
+.cost-share-list .share-ad {
+  color: var(--ad);
+}
+
+.cost-share-list .share-promo {
+  color: var(--promo);
+}
+
+.cost-share-list .share-other {
+  color: var(--other);
+}
+
+.cost-share-list .share-profit {
+  color: var(--profit);
 }
 
 .cost-share-list strong {
