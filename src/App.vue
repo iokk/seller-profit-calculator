@@ -12,9 +12,17 @@ import ResultPanel from './components/ResultPanel.vue'
         <p class="badge">本地计算 · 无需登录</p>
         <h1>跨境卖家计算器</h1>
       </div>
-      <p class="subtitle">
-        回答两个核心问题：我卖这个价能赚多少？我要赚这个利润应该卖多少？
-      </p>
+      <div class="hero-side">
+        <p class="subtitle">
+          回答两个核心问题：我卖这个价能赚多少？我要赚这个利润应该卖多少？
+        </p>
+        <div class="hero-links" aria-label="项目链接">
+          <a href="https://temu.nowdn.com/" rel="noopener noreferrer">在线使用</a>
+          <a href="https://github.com/iokk/seller-profit-calculator" target="_blank" rel="noopener noreferrer">
+            GitHub 开源
+          </a>
+        </div>
+      </div>
     </section>
 
     <PresetBar />
@@ -45,7 +53,7 @@ import ResultPanel from './components/ResultPanel.vue'
         <h2>隐私和开源</h2>
         <p>
           本工具不需要登录，计算在浏览器本地完成，不上传你的成本、售价或利润数据。项目开源，便于自行部署、审查和二次修改。
-          <a href="https://github.com/iokk/seller-profit-calculator" target="_blank" rel="noopener noreferrer">
+          <a class="footer-link" href="https://github.com/iokk/seller-profit-calculator" target="_blank" rel="noopener noreferrer">
             查看 GitHub 项目
           </a>
         </p>
