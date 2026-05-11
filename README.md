@@ -1,4 +1,5 @@
 # 跨境卖家计算器
+<img width="1024" height="1024" alt="image" src="https://github.com/user-attachments/assets/76a2bf09-b12f-41e6-a11e-d5de05124d30" />
 
 一个免费的开源跨境卖家利润计算器，用来快速核算成本、费率、利润和建议售价。
 
