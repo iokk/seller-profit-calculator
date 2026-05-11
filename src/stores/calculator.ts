@@ -7,6 +7,7 @@ const STORAGE_KEY = 'seller-profit-calculator-input-v2'
 const MAX_AMOUNT = 99999999
 
 type AmountKey =
+  | 'sellingPrice'
   | 'productCost'
   | 'firstMileCost'
   | 'lastMileCost'
@@ -15,15 +16,26 @@ type AmountKey =
   | 'returnLossCost'
   | 'otherCost'
 
-type RateKey = 'platformFeeRate' | 'paymentFeeRate' | 'adFeeRate' | 'targetProfitRate'
+type RateKey =
+  | 'platformFeeRate'
+  | 'paymentFeeRate'
+  | 'adFeeRate'
+  | 'activityFeeRate'
+  | 'affiliateFeeRate'
+  | 'otherFeeRate'
+  | 'targetProfitRate'
 
 const defaultInput: CalculatorInput = {
+  sellingPrice: 0,
   productCost: 0,
   firstMileCost: 0,
   lastMileCost: 0,
   platformFeeRate: 0,
   paymentFeeRate: 0,
   adFeeRate: 0,
+  activityFeeRate: 0,
+  affiliateFeeRate: 0,
+  otherFeeRate: 0,
   storageCost: 0,
   taxCost: 0,
   returnLossCost: 0,
@@ -40,7 +52,8 @@ const defaultPresets: Preset[] = [
     input: {
       platformFeeRate: 0.02,
       paymentFeeRate: 0.035,
-      adFeeRate: 0.12
+      adFeeRate: 0.12,
+      otherFeeRate: 0.01
     }
   },
   {
@@ -50,7 +63,8 @@ const defaultPresets: Preset[] = [
     input: {
       platformFeeRate: 0.15,
       paymentFeeRate: 0.02,
-      adFeeRate: 0.1
+      adFeeRate: 0.1,
+      activityFeeRate: 0.02
     }
   },
   {
@@ -60,7 +74,8 @@ const defaultPresets: Preset[] = [
     input: {
       platformFeeRate: 0.06,
       paymentFeeRate: 0.03,
-      adFeeRate: 0.15
+      adFeeRate: 0.15,
+      affiliateFeeRate: 0.03
     }
   },
   {

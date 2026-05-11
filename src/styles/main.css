@@ -230,6 +230,32 @@ h1 {
   line-height: 1.05;
 }
 
+.dual-result {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  padding: 10px;
+}
+
+.dual-result div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  border-radius: 7px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.dual-result strong {
+  font-size: 25px;
+  overflow-wrap: anywhere;
+}
+
+.dual-result span {
+  color: #607591;
+  font-size: 11px;
+  font-weight: 650;
+}
+
 .metric-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -299,7 +325,8 @@ h1 {
 }
 
 .notice,
-.buyer-note {
+.buyer-note,
+.error-note {
   margin-top: 10px;
   border: 1px solid #ead9ac;
   border-radius: 8px;
@@ -308,6 +335,82 @@ h1 {
   background: #fffaf0;
   font-size: 12px;
   line-height: 1.5;
+}
+
+.error-note {
+  border-color: #f1c5c8;
+  color: #8c2834;
+  background: var(--fee-soft);
+}
+
+.cost-share-card {
+  margin-top: 10px;
+  border: 1px solid var(--soft-line);
+  border-radius: 8px;
+  padding: 10px;
+  background: #fbfcfd;
+}
+
+.cost-share-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 12px;
+}
+
+.cost-share-header span {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.cost-share-bar {
+  display: flex;
+  height: 9px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: var(--soft-line);
+}
+
+.cost-share-bar span {
+  min-width: 0;
+}
+
+.cost-share-bar .cost {
+  background: #d9902f;
+}
+
+.cost-share-bar .fee {
+  background: #d95c66;
+}
+
+.cost-share-bar .profit-card {
+  background: #28a263;
+}
+
+.cost-share-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 5px 10px;
+  margin-top: 8px;
+}
+
+.cost-share-list div {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.cost-share-list span {
+  font-weight: 720;
+}
+
+.cost-share-list strong {
+  color: var(--ink);
+  font-weight: 720;
 }
 
 .mini-invoice {
@@ -413,6 +516,11 @@ h1 {
   min-height: 96px;
   color: #344054;
   font-weight: 680;
+}
+
+.highlight-field input {
+  border-color: #b8d0fa;
+  background: var(--price-soft);
 }
 
 .field-title {
@@ -708,11 +816,29 @@ select:focus {
 }
 
 .footer {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
   margin-top: 22px;
   color: #8a95a5;
-  text-align: center;
+  text-align: left;
   font-size: 12px;
   line-height: 1.7;
+}
+
+.footer section {
+  border-top: 1px solid var(--line);
+  padding-top: 12px;
+}
+
+.footer h2 {
+  margin: 0 0 5px;
+  color: #4e5b6d;
+  font-size: 13px;
+}
+
+.footer p {
+  margin: 0;
 }
 
 @media (max-width: 980px) {
@@ -797,6 +923,10 @@ select:focus {
   .share-table strong {
     text-align: left;
   }
+
+  .footer {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 520px) {
@@ -804,6 +934,11 @@ select:focus {
   .form-grid,
   .metric-grid,
   .share-metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .dual-result,
+  .cost-share-list {
     grid-template-columns: 1fr;
   }
 }

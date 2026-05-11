@@ -35,6 +35,18 @@ function fromAmount(value: number) {
     </div>
 
     <div class="form-grid">
+      <label class="field highlight-field">
+        <span class="field-title">当前售价</span>
+        <input
+          :value="fromAmount(store.input.sellingPrice)"
+          type="text"
+          inputmode="decimal"
+          maxlength="11"
+          @input="store.updateAmount('sellingPrice', ($event.target as HTMLInputElement).value)"
+        />
+        <small>回答：我卖这个价，单件能赚多少？</small>
+      </label>
+
       <label class="field">
         <span class="field-title">产品成本</span>
         <input
@@ -108,6 +120,42 @@ function fromAmount(value: number) {
       </label>
 
       <label class="field rate-field">
+        <span class="field-title">活动扣点 %</span>
+        <input
+          :value="fromRate(store.input.activityFeeRate)"
+          type="text"
+          inputmode="decimal"
+          maxlength="6"
+          @input="store.updateRate('activityFeeRate', ($event.target as HTMLInputElement).value)"
+        />
+        <small>活动服务费、促销扣点或平台额外活动成本</small>
+      </label>
+
+      <label class="field rate-field">
+        <span class="field-title">达人佣金 %</span>
+        <input
+          :value="fromRate(store.input.affiliateFeeRate)"
+          type="text"
+          inputmode="decimal"
+          maxlength="6"
+          @input="store.updateRate('affiliateFeeRate', ($event.target as HTMLInputElement).value)"
+        />
+        <small>达人、联盟、分销或渠道抽成</small>
+      </label>
+
+      <label class="field rate-field">
+        <span class="field-title">其他比例扣款 %</span>
+        <input
+          :value="fromRate(store.input.otherFeeRate)"
+          type="text"
+          inputmode="decimal"
+          maxlength="6"
+          @input="store.updateRate('otherFeeRate', ($event.target as HTMLInputElement).value)"
+        />
+        <small>按售价比例扣除的杂费、汇损或风险预留</small>
+      </label>
+
+      <label class="field rate-field">
         <span class="field-title">目标利润率 %</span>
         <input
           :value="fromRate(store.input.targetProfitRate)"
@@ -156,7 +204,7 @@ function fromAmount(value: number) {
       </label>
 
       <label class="field">
-        <span class="field-title">其他成本</span>
+        <span class="field-title">其他固定扣款</span>
         <input
           :value="fromAmount(store.input.otherCost)"
           type="text"
@@ -164,14 +212,14 @@ function fromAmount(value: number) {
           maxlength="11"
           @input="store.updateAmount('otherCost', ($event.target as HTMLInputElement).value)"
         />
-        <small>包装、人工、赠品等其他分摊成本</small>
+        <small>包装、人工、赠品等每单固定分摊成本</small>
       </label>
 
     </div>
 
     <div class="rate-reference">
       <strong>费率按售价百分比计算</strong>
-      <span>例如售价 ¥100、平台佣金 8%，平台费就是 ¥8。</span>
+      <span>固定扣款直接相加，比例扣款按售价计算；例如售价 ¥100、平台佣金 8%，平台费就是 ¥8。</span>
     </div>
 
     <ExchangeRateCard />

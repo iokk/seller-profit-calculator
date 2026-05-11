@@ -33,7 +33,7 @@ async function copyImage() {
     <div class="card-header">
       <div>
         <p class="eyebrow">Buyer Card</p>
-        <h2>客户核对卡片</h2>
+        <h2>报价核对工具</h2>
       </div>
       <div class="button-group">
         <button @click="downloadImage">一键截图</button>
@@ -48,8 +48,8 @@ async function copyImage() {
 
       <div class="share-headline">
         <div>
-          <h3>售价核对清单</h3>
-          <p>含成本、物流、平台费、支付费、广告费和目标利润。</p>
+          <h3>报价核对清单</h3>
+          <p>含固定成本、比例扣款、当前售价利润和目标利润建议售价。</p>
         </div>
         <div class="share-price">
           <span>建议售价</span>
@@ -67,12 +67,12 @@ async function copyImage() {
           <strong>{{ formatMoney(store.result.breakEvenPrice, store.input.currency) }}</strong>
         </div>
         <div class="profit-card">
-          <span>单件利润</span>
-          <strong>{{ formatMoney(store.result.profit, store.input.currency) }}</strong>
+          <span>当前售价利润</span>
+          <strong>{{ formatMoney(store.result.sellingPriceProfit, store.input.currency) }}</strong>
         </div>
         <div class="profit-card">
-          <span>利润率</span>
-          <strong>{{ formatPercent(store.result.profitRate) }}</strong>
+          <span>目标售价利润</span>
+          <strong>{{ formatMoney(store.result.profit, store.input.currency) }}</strong>
         </div>
       </div>
 
@@ -85,7 +85,7 @@ async function copyImage() {
           <div><span>仓储费</span><strong>{{ formatMoney(store.input.storageCost, store.input.currency) }}</strong></div>
           <div><span>税费</span><strong>{{ formatMoney(store.input.taxCost, store.input.currency) }}</strong></div>
           <div><span>退货损耗</span><strong>{{ formatMoney(store.input.returnLossCost, store.input.currency) }}</strong></div>
-          <div><span>其他成本</span><strong>{{ formatMoney(store.input.otherCost, store.input.currency) }}</strong></div>
+          <div><span>其他固定扣款</span><strong>{{ formatMoney(store.input.otherCost, store.input.currency) }}</strong></div>
         </div>
       </div>
 
@@ -105,6 +105,18 @@ async function copyImage() {
             <strong>{{ formatMoney(store.result.recommendedPrice, store.input.currency) }} × {{ formatPercent(store.input.adFeeRate) }} = {{ formatMoney(store.result.adFee, store.input.currency) }}</strong>
           </div>
           <div>
+            <span>活动扣点</span>
+            <strong>{{ formatMoney(store.result.recommendedPrice, store.input.currency) }} × {{ formatPercent(store.input.activityFeeRate) }} = {{ formatMoney(store.result.activityFee, store.input.currency) }}</strong>
+          </div>
+          <div>
+            <span>达人佣金</span>
+            <strong>{{ formatMoney(store.result.recommendedPrice, store.input.currency) }} × {{ formatPercent(store.input.affiliateFeeRate) }} = {{ formatMoney(store.result.affiliateFee, store.input.currency) }}</strong>
+          </div>
+          <div>
+            <span>其他比例扣款</span>
+            <strong>{{ formatMoney(store.result.recommendedPrice, store.input.currency) }} × {{ formatPercent(store.input.otherFeeRate) }} = {{ formatMoney(store.result.otherVariableFee, store.input.currency) }}</strong>
+          </div>
+          <div>
             <span>变动费用合计</span>
             <strong>{{ formatMoney(store.result.totalVariableFee, store.input.currency) }}</strong>
           </div>
@@ -121,7 +133,14 @@ async function copyImage() {
           <li>
             变动费率 = 平台佣金 {{ formatPercent(store.input.platformFeeRate) }} + 支付手续费
             {{ formatPercent(store.input.paymentFeeRate) }} + 广告费率
-            {{ formatPercent(store.input.adFeeRate) }} = {{ formatPercent(store.result.variableFeeRate) }}
+            {{ formatPercent(store.input.adFeeRate) }} + 活动扣点
+            {{ formatPercent(store.input.activityFeeRate) }} + 达人佣金
+            {{ formatPercent(store.input.affiliateFeeRate) }} + 其他比例扣款
+            {{ formatPercent(store.input.otherFeeRate) }} = {{ formatPercent(store.result.variableFeeRate) }}
+          </li>
+          <li>
+            当前售价利润 = 当前售价 - 固定成本 - 当前售价下的比例扣款 =
+            {{ formatMoney(store.result.sellingPriceProfit, store.input.currency) }}
           </li>
           <li>
             建议售价 = 固定成本 ÷ (1 - 变动费率 - 目标利润率) =
@@ -137,10 +156,10 @@ async function copyImage() {
         </ol>
       </div>
 
-      <p class="buyer-note">此清单为估算参考，实际费用会因平台、物流、地区和活动政策变化。</p>
+      <p class="buyer-note">此清单为估算参考，实际费用会因平台、物流、地区和活动政策变化；页面本地计算，不需要登录，不上传或保存你的业务数据。</p>
 
       <div class="buyer-footer">
-        <span>清晰定价 · 合理成本 · 安心购买</span>
+        <span>开源工具 · 本地计算 · 隐私友好</span>
         <span>{{ new Date().toLocaleDateString() }}</span>
       </div>
     </div>
