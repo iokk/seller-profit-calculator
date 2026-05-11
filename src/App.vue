@@ -45,6 +45,9 @@ import ResultPanel from './components/ResultPanel.vue'
         <h2>隐私和开源</h2>
         <p>
           本工具不需要登录，计算在浏览器本地完成，不上传你的成本、售价或利润数据。项目开源，便于自行部署、审查和二次修改。
+          <a href="https://github.com/iokk/seller-profit-calculator" target="_blank" rel="noopener noreferrer">
+            查看 GitHub 项目
+          </a>
         </p>
       </section>
     </footer>
